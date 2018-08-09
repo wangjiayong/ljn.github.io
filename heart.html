@@ -86,10 +86,11 @@ function getTimeByUtc (time,isTimeStemp ) {
 	let date = new Date(time)
     if (isTimeStemp) return date.getTime()
     let year = date.getFullYear()
-    let month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)
-    let day = (date.getDate() + 1) < 10 ? '0' + date.getDate() : date.getDate()
+    let month = (date.getMonth() + 1) < 10 ? (date.getMonth() + 1) : (date.getMonth() + 1)
+    let day = (date.getDate() + 1) < 10 ? date.getDate() : date.getDate()
     return `${year},${month},${day}`
 }
+// console.log(getTimeByUtc(new Date()))
 if (!document.createElement('canvas').getContext) {
 	var msg = document.createElement("div");
 	msg.id = "errorMsg";
@@ -102,7 +103,7 @@ if (!document.createElement('canvas').getContext) {
 } else {
 	setTimeout(function () {
 		startHeartAnimation();
-	}, 4000);
+	}, 1000);
 	timeElapse(getTimeByUtc(new Date()));
 	setInterval(function () {
 		timeElapse(getTimeByUtc(new Date()));

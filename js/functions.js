@@ -126,7 +126,7 @@ function timeElapse(futimg){
     var second = parseInt(time%60);  // 以60秒为一整份 取余 剩下秒数
 //              console.log(hour+":"+minute+":"+second)
 //              alert(hour)
-	var result = "<span class=\"digit\">" + day + "</span> 天 <span class=\"digit\">" + hour + "</span> 时 <span class=\"digit\">" + minute + "</span> 分 <span class=\"digit\">" + second + "</span> seconds"; 
+	var result = "<span class=\"digit\">" + day + "</span> 天 <span class=\"digit\">" + hour + "</span> 时 <span class=\"digit\">" + minute + "</span> 分 <span class=\"digit\">" + second + "</span> 秒"; 
 	$("#elapseClock").html(result);
     return true;
 }
