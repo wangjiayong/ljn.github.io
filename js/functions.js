@@ -92,30 +92,44 @@ function startHeartAnimation() {
 	};
 })(jQuery);
 
-function timeElapse(date){
-	var current = Date();
-	var seconds = (Date.parse(current) - Date.parse(date)) / 1000;
-	var seconds = (Date.parse(date) - Date.parse(current)) / 1000;
-	var days = Math.floor(seconds / (3600 * 24))-31;
-	seconds = seconds % (3600 * 24);
-	var hours = Math.floor(seconds / 3600);
-	if (hours < 10) {
-		hours = "0" + hours;
-	}
-	seconds = seconds % 3600;
-	var minutes = Math.floor(seconds / 60);
-	if (minutes < 10) {
-		minutes = "0" + minutes;
-	}
-	seconds = seconds % 60;
-	if (seconds < 10) {
-		seconds = "0" + seconds;
-	}
-	console.log(days,hours,minutes)
-	var result = "<span class=\"digit\">" + days + "</span> 天 <span class=\"digit\">" + hours + "</span> 时 <span class=\"digit\">" + minutes + "</span> 分 <span class=\"digit\">" + seconds + "</span> seconds"; 
+// function timeElapse(date){
+// 	var current = Date();
+// 	var seconds = (Date.parse(current) - Date.parse(date)) / 1000;
+// 	var seconds = (Date.parse(date) - Date.parse(current)) / 1000;
+// 	var days = Math.floor(seconds / (3600 * 24))-31;
+// 	seconds = seconds % (3600 * 24);
+// 	var hours = Math.floor(seconds / 3600);
+// 	if (hours < 10) {
+// 		hours = "0" + hours;
+// 	}
+// 	seconds = seconds % 3600;
+// 	var minutes = Math.floor(seconds / 60);
+// 	if (minutes < 10) {
+// 		minutes = "0" + minutes;
+// 	}
+// 	seconds = seconds % 60;
+// 	if (seconds < 10) {
+// 		seconds = "0" + seconds;
+// 	}
+// 	console.log(days,hours,minutes)
+// 	var result = "<span class=\"digit\">" + days + "</span> 天 <span class=\"digit\">" + hours + "</span> 时 <span class=\"digit\">" + minutes + "</span> 分 <span class=\"digit\">" + seconds + "</span> seconds"; 
+// 	$("#elapseClock").html(result);
+// }
+function timeElapse(futimg){
+    var nowtime = new Date().getTime(); // 现在时间转换为时间戳
+    var futruetime =  new Date(futimg).getTime(); // 未来时间转换为时间戳
+    var msec = nowtime-futruetime; // 毫秒 未来时间-现在时间
+    var time = (msec/1000);  // 毫秒/1000
+    var day = parseInt(time/86400); // 天  24*60*60*1000 
+    var hour = parseInt(time/3600)-24*day;    // 小时 60*60 总小时数-过去的小时数=现在的小时数 
+    var minute = parseInt(time%3600/60); // 分 -(day*24) 以60秒为一整份 取余 剩下秒数 秒数/60 就是分钟数
+    var second = parseInt(time%60);  // 以60秒为一整份 取余 剩下秒数
+//              console.log(hour+":"+minute+":"+second)
+//              alert(hour)
+	var result = "<span class=\"digit\">" + day + "</span> 天 <span class=\"digit\">" + hour + "</span> 时 <span class=\"digit\">" + minute + "</span> 分 <span class=\"digit\">" + second + "</span> seconds"; 
 	$("#elapseClock").html(result);
+    return true;
 }
-
 function showMessages() {
 	adjustWordsPosition();
 	$('#messages').fadeIn(5000, function() {
